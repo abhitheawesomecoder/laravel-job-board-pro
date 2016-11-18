@@ -1,0 +1,14 @@
+{
+    "name": "abhitheawesomecoder/jobboardpro",
+    "description": "Package to create job board quickly using laravel 5.3 with admin panel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abhishek Kumar",
+            "email": "abhitheawesomecoder@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
