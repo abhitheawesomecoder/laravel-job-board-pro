@@ -359,7 +359,7 @@
                         <div class="row">
                             <div class="col-md-6 fix col-xs-12 col-sm-6">
                                 <div class="footer-logo pull-left">
-                                    <a href="index.html" class="block"><img src="images/logo/footer-logo.png" alt=""></a>
+                                    <a href="index.html" class="block"><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/logo/footer-logo.png') }}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-md-6 fix col-xs-12 col-sm-6">
