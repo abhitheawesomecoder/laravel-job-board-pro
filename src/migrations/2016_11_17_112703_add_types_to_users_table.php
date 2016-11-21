@@ -14,9 +14,9 @@ class AddTypesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-          $table->string('user_type')->default(null);
-          $table->string('website_url')->default(null);
-          $table->text('profile_description')->default(null);
+          $table->string('user_type')->nullable();
+          $table->string('website_url')->nullable();
+          $table->text('profile_description')->nullable();
         });
     }
 
