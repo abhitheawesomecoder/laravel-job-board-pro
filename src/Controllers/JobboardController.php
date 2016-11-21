@@ -2,6 +2,7 @@
 
 namespace Abhitheawesomecoder\Jobboardpro\Controllers;
 
+use Abhitheawesomecoder\Jobboardpro\Models\Candidate;
 use Abhitheawesomecoder\Jobboardpro\Models\Job;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,11 +20,49 @@ class JobboardController extends Controller
     {
       return view('vendor.abhitheawesomecoder.jobboardpro.views.login');
     }
+     public function candidates()
+    {
+        $candidates = Candidate::all();
+
+        return view('vendor.abhitheawesomecoder.jobboardpro.views.candidate',["candidates" => $candidates]);
+    }
     public function jobdetails($id){
 
        $job = Job::find($id);
 
        return view('vendor.abhitheawesomecoder.jobboardpro.views.jobdetails',["job" => $job]);
+    }
+    public function candidatedetails($id){
+
+       $can = Candidate::find($id);
+
+       return view('vendor.abhitheawesomecoder.jobboardpro.views.candidatedetails',["can" => $can]);
+    }
+    public function candidatesearch(Request $request)
+    {
+      $builder = Candidate::query();
+      if ($request->has('keyword')) {
+          $queryString = $request->input('keyword');
+          $builder->where('skills', 'LIKE', "%$queryString%");
+      }
+      if ($request->has('location')) {
+          $queryString = $request->input('location');
+
+          $builder->where(function ($query) use ($queryString)  {
+                $query->where('address', 'LIKE', "% $queryString %")
+                      ->orWhere('address', 'LIKE', "$queryString %")
+                      ->orWhere('address', 'LIKE', "% $queryString");
+            });
+      }
+      if ($request->has('category')) {
+          $queryString = $request->input('category');
+          $builder->where('profile_title', 'LIKE', "%$queryString%");
+      }
+
+      $candidates = $builder  ->orderBy('id', 'DESC')->get();
+
+
+      return view('vendor.abhitheawesomecoder.jobboardpro.views.candidate',["candidates" => $candidates]);
     }
     public function jobsearch(Request $request)
     {
@@ -33,7 +72,7 @@ class JobboardController extends Controller
           $builder->where('job_title', 'LIKE', "%$queryString%");
       }
       if ($request->has('location')) {
-          $queryString = $request->input('location');     
+          $queryString = $request->input('location');
 
           $builder->where(function ($query) use ($queryString)  {
                 $query->where('job_location', 'LIKE', "% $queryString %")
@@ -45,10 +84,10 @@ class JobboardController extends Controller
           $queryString = $request->input('category');
           $builder->where('job_category', 'LIKE', "%$queryString%");
       }
-     
+
       $jobs = $builder  ->orderBy('id', 'DESC')->get();
 
-     
+
       return view('vendor.abhitheawesomecoder.jobboardpro.views.search',["jobs" => $jobs]);
 
     }
