@@ -9,16 +9,20 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Validator;
+
 class JobboardController extends Controller
 {
 
-  /*	public function __construct(){
-       $this->middleware('auth');
-    }*/
+  	
 
     public function home()
     {
-      return view('vendor.abhitheawesomecoder.jobboardpro.views.login');
+      $ufjobs = Job::where('featured',false)->orderBy('id', 'DESC')->get();
+
+      $fjobs = Job::where('featured',true)->orderBy('id', 'DESC')->get();
+
+      return view('vendor.abhitheawesomecoder.jobboardpro.views.landing',["ufjobs" => $ufjobs,"fjobs" => $fjobs]);
+
     }
      public function candidates()
     {
