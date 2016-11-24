@@ -32,6 +32,9 @@ class JobboardproServiceProvider extends ServiceProvider
         $this->publishes([
         __DIR__.'/layouts' =>  base_path('resources/views/layouts')
        ], 'layouts');
+       $this->publishes([
+       __DIR__.'/routes' =>  base_path('routes')
+      ], 'layouts');
      }
 
     /**
