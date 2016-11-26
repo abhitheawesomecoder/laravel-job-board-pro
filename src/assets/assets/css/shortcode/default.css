@@ -1196,16 +1196,16 @@ textarea:focus {
  .bg-opacity-dark-blue-80:before {  background: rgba(45, 62, 80, 0.8);}
  .bg-opacity-dark-blue-90:before {  background: rgba(45, 62, 80, 0.9);}
 
-.bg-opacity-blue-10:before {  background-color: rgba(20, 177, 187, 0.1);}
-.bg-opacity-blue-20:before {  background: rgba(20, 177, 187, 0.2);}
-.bg-opacity-blue-30:before {  background: rgba(20, 177, 187, 0.3);}
-.bg-opacity-blue-40:before {  background: rgba(20, 177, 187, 0.4);}
-.bg-opacity-blue-50:before {  background-color: rgba(20, 177, 187, 0.5);}
-.bg-opacity-blue-60:before {  background: rgba(20, 177, 187, 0.6);}
-.bg-opacity-blue-70:before {  background: rgba(20, 177, 187, 0.7);}
-.bg-opacity-blue-80:before {  background: rgba(20, 177, 187, 0.8);}
-.bg-opacity-blue-85:before {  background: rgba(20, 177, 187, 0.85);}
-.bg-opacity-blue-90:before {  background: rgba(20, 177, 187, 0.9);}
+.bg-opacity-blue-10:before {  background-color: rgba(0, 125, 197, 0.1);}
+.bg-opacity-blue-20:before {  background: rgba(0, 125, 197, 0.2);}
+.bg-opacity-blue-30:before {  background: rgba(0, 125, 197, 0.3);}
+.bg-opacity-blue-40:before {  background: rgba(0, 125, 197, 0.4);}
+.bg-opacity-blue-50:before {  background-color: rgba(0, 125, 197, 0.5);}
+.bg-opacity-blue-60:before {  background: rgba(0, 125, 197, 0.6);}
+.bg-opacity-blue-70:before {  background: rgba(0, 125, 197, 0.7);}
+.bg-opacity-blue-80:before {  background: rgba(0, 125, 197, 0.8);}
+.bg-opacity-blue-85:before {  background: rgba(0, 125, 197, 0.85);}
+.bg-opacity-blue-90:before {  background: rgba(0, 125, 197, 0.9);}
 
 /*image background*/
 .bg-1, .bg-2, .bg-3, .bg-4, .bg-5, .bg-6, .bg-7, .bg-8, .bg-9, .bg-10{

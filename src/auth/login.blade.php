@@ -31,9 +31,9 @@
                                         <h2 class="pt-10 pb-10">Login or create an account</h2>
                                     </div>
                                     <div class="account-form-container fix mt-70">
-                                      {{--  <a class="button border-button mb-7" href="#" data-toggle="modal" data-target="#register">Register</a> --}}
+                                      {{--  <a class="button button-style-two medium mt-15" href="#" data-toggle="modal" data-target="#register">Register</a> --}}
                                         <div class="text-center fix">
-                                            <a class="button button-style-two medium col-2 modal-view" href="{{ url('/register') }}" >Register</a>
+                                            <a class="button button-style-two medium mt-15 modal-view" href="{{ url('/register') }}" >Register</a>
                                         </div>
                                         <div class="login-form mt-36">
                                             <div class="single-info pb-14 fix">

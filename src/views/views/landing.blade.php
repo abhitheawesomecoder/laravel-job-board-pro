@@ -37,7 +37,7 @@
                             <div class="section-title text-center ">
                                 <h2 class="uppercase">Recent Jobs</h2>
                                 <div class="separator mt-35 mb-77">
-                                    <span><img src="images/icons/1.png" alt=""></span>
+                                    <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                         <span class="mtb-30 block">{{ $job->job_location }}</span>
                                     </div>
                                     <div class="time-payment col-2 pl-60 text-center pt-22">
-                                        <span class="block mb-6">€ {{ $job->payment }}</span>
+                                        <span class="block mb-6">$ {{ $job->payment }}</span>
                                         <a href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                             <div class="section-title text-center ">
                                 <h2 class="uppercase">Featured Jobs</h2>
                                 <div class="separator mt-35 mb-77">
-                                    <span><img src="images/icons/1.png" alt=""></span>
+                                    <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                                       <span class="mtb-30 block">{{ $job->job_location }}</span>
                                   </div>
                                   <div class="time-payment col-2 pl-60 text-center pt-22">
-                                      <span class="block mb-6">€ {{ $job->payment }}</span>
+                                      <span class="block mb-6">$ {{ $job->payment }}</span>
                                       <a href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
                                   </div>
                               </div>

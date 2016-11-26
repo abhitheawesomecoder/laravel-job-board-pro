@@ -30,7 +30,7 @@
                 <div class="section-title text-center ">
                     <h2 class="uppercase">Candidates</h2>
                     <div class="separator mt-35 mb-77">
-                        <span><img src="images/icons/1.png" alt=""></span>
+                        <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
                     </div>
                 </div>
             </div>
