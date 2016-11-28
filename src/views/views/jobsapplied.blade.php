@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                 </div>
-                   @include('vendor.abhitheawesomecoder.jobboardpro.views.searchform')
+
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center ">
-                    <h2 class="uppercase">Recent Jobs</h2>
+                    <h2 class="uppercase">Jobs Applied</h2>
                     <div class="separator mt-35 mb-77">
                         <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
                     </div>
@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 <div class="job-post-container fix">
 
-                  @foreach ($ufjobs as $job)
+                  @foreach ($jobs as $job)
                     <div class="single-job-post fix">
                         <div class="job-title col-4 pl-30">
                             <span class="pull-left block mtb-17">
@@ -66,49 +66,5 @@
     </div>
 </div>
 <!-- End of Job Post Area -->
-<!--Start of Job Post Area-->
-<div class="job-post-area pb-120">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title text-center ">
-                    <h2 class="uppercase">Featured Jobs</h2>
-                    <div class="separator mt-35 mb-77">
-                        <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="job-post-container fix">
 
-
-                @foreach ($fjobs as $job)
-                <div class="single-job-post fix">
-                    <div class="job-title col-4 pl-30">
-                        <span class="pull-left block mtb-17">
-                            <a href="#"><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/'. $job->company_logo) }}" alt=""></a>
-                        </span>
-                        <div class="fix pl-30 mt-29">
-                            <h4 class="mb-5">{{ $job->job_title }}</h4>
-                            <h5><a href="#">{{ $job->company_name }}</a></h5>
-                        </div>
-                    </div>
-                    <div class="address col-4 pl-50">
-                        <span class="mtb-30 block">{{ $job->job_location }}</span>
-                    </div>
-                    <div class="time-payment col-2 pl-60 text-center pt-22">
-                        <span style="font-family: 'Poppins', sans-serif" class="block mb-6">{{ $job->job_category }}</span>
-                        <a href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
-                    </div>
-                </div>
-                @endforeach
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End of Job Post Area -->
 @endsection

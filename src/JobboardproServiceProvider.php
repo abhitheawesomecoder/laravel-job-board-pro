@@ -17,9 +17,9 @@ class JobboardproServiceProvider extends ServiceProvider
           $this->publishes([
           __DIR__.'/migrations' =>  database_path('/migrations')
          ], 'migrations');
-         $this->publishes([
-         __DIR__.'/seeds' =>  database_path('/seeds')
-       ], 'seeds');
+           $this->publishes([
+           __DIR__.'/seeds' =>  database_path('/seeds')
+         ], 'seeds');
  	  	   $this->publishes([
          __DIR__.'/assets' => public_path('vendor/abhitheawesomecoder/jobboardpro'),
          ], 'public');
@@ -32,6 +32,9 @@ class JobboardproServiceProvider extends ServiceProvider
         $this->publishes([
         __DIR__.'/layouts' =>  base_path('resources/views/layouts')
        ], 'layouts');
+         $this->publishes([
+         __DIR__.'/Model' =>  base_path('app')
+       ], 'models');
        $this->publishes([
        __DIR__.'/routes' =>  base_path('routes')
       ], 'layouts');
