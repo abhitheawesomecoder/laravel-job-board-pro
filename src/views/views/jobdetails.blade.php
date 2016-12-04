@@ -36,6 +36,10 @@
                                           <p> {{ $job->job_description }} </p>
                                         </div>
 
+                                        <div class="ml-160 mt-38">
+                                            <a href="{{ url('apply').'/'.$job->id }}" class="button button-large-box">Apply</a>
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>

@@ -12,6 +12,7 @@ class JobTableSeeder extends Seeder
     public function run()
     {
       DB::table('jobs')->insert([
+         'user_id' => 0,
          'job_title' => 'Graphic Designer',
          'job_description' => 'We have earlier made our own custom webshop, which works good. But now we need to add some new features. Its a Laravel 5 Project running on LEMP (Linux, Nginx, MySQL, PHP) stack.PHP, Composer, Laravel, Linux, Nginx, MySQL, JS, SASS. Please send us message if you are interested.',
          'job_location' => '2020 Willshire1 Glen,Alpharetta, GA-30009',
@@ -23,6 +24,7 @@ class JobTableSeeder extends Seeder
          'company_logo' => 'images/company-logo/1.png'
      ]);
      DB::table('jobs')->insert([
+        'user_id' => 0,
         'job_title' => 'Web Designer',
         'job_description' => 'We have earlier made our own custom webshop, which works good. But now we need to add some new features. Its a Laravel 5 Project running on LEMP (Linux, Nginx, MySQL, PHP) stack.PHP, Composer, Laravel, Linux, Nginx, MySQL, JS, SASS. Please send us message if you are interested.',
         'job_location' => '2020 Willshire2 Glen,Alpharetta, GA-30009',
@@ -34,6 +36,7 @@ class JobTableSeeder extends Seeder
         'company_logo' => 'images/company-logo/2.png'
     ]);
     DB::table('jobs')->insert([
+       'user_id' => 0,
        'job_title' => 'Print Designer',
        'job_description' => 'We have earlier made our own custom webshop, which works good. But now we need to add some new features. Its a Laravel 5 Project running on LEMP (Linux, Nginx, MySQL, PHP) stack.PHP, Composer, Laravel, Linux, Nginx, MySQL, JS, SASS. Please send us message if you are interested.',
        'job_location' => '2020 Willshire1 Glen,Alpharetta, GA-30009',
@@ -45,6 +48,7 @@ class JobTableSeeder extends Seeder
        'company_logo' => 'images/company-logo/3.png'
    ]);
    DB::table('jobs')->insert([
+      'user_id' => 0,
       'job_title' => 'UI/UX Designer',
       'job_description' => 'We have earlier made our own custom webshop, which works good. But now we need to add some new features. Its a Laravel 5 Project running on LEMP (Linux, Nginx, MySQL, PHP) stack.PHP, Composer, Laravel, Linux, Nginx, MySQL, JS, SASS. Please send us message if you are interested.',
       'job_location' => '2020 Willshire2 Glen,Alpharetta, GA-30009',

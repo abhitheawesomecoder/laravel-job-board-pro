@@ -45,7 +45,7 @@ class JobboardController extends Controller
     {
       $userid = Auth::user()->id;
 
-      $jobs = User::find(1)->jobs()->orderBy('id', 'DESC')->get();
+      $jobs = User::find($userid)->jobs()->orderBy('id', 'DESC')->get();
 
       return view('vendor.abhitheawesomecoder.jobboardpro.views.jobsapplied',["jobs" => $jobs]);
 
