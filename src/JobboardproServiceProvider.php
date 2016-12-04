@@ -36,6 +36,9 @@ class JobboardproServiceProvider extends ServiceProvider
          __DIR__.'/Model' =>  base_path('app')
        ], 'models');
        $this->publishes([
+       __DIR__.'/Controller' =>  base_path('app/Http/Controllers/Auth')
+     ], 'models');
+       $this->publishes([
        __DIR__.'/routes' =>  base_path('routes')
       ], 'layouts');
      }
