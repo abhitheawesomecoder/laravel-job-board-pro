@@ -74,6 +74,14 @@
                                     <input type="password" id="r_password" name="password_confirmation" placeholder="Please enter your password">
                                 </div>
                             </div>
+
+                            <div class="single-info pb-14 fix">
+                                <label for="name" class="pull-left m-0 lg-text">I am:</label>
+                                <div class="form-box col-4 fix">
+                                    <span class="block conditions fix mt-34"><input type="radio" name="user_type" value="Employer" checked class="p-0 pull-left">an Employer</span>
+                                    <span class="block conditions fix mt-34"><input type="radio" name="user_type" value="JobSeeker" class="p-0 pull-left">a Job Seeker</span>
+                              </div>
+                            </div>
                         </div>
 
                         <button class="button button-style-two medium mt-15">Register</button>
