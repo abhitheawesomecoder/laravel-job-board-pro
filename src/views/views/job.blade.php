@@ -100,7 +100,7 @@
                     </div>
                     <div class="time-payment col-2 pl-60 text-center pt-22">
                         <span style="font-family: 'Poppins', sans-serif" class="block mb-6">{{ $job->job_category }}</span>
-                        <a href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
+                        <a  href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
                     </div>
                 </div>
                 @endforeach

@@ -10,9 +10,25 @@ use App\User;
 use Auth;
 use Validator;
 use Intervention\Image\Facades\Image as Image;
+use Storage;
 
 class JobboardController extends Controller
 {
+
+    public function activateresume($resumeid)
+    {
+      $user_id = Auth::user()->id;
+      Candidate::where('user_id',$user_id)
+                ->update(['active' => 0]);
+
+      $job = Candidate::find($resumeid);
+
+      $job->active = 1;
+
+      $job->save();
+
+      return redirect()->back();
+    }
     public function activate($jobid)
     {
       $job = Job::find($jobid);
@@ -36,7 +52,7 @@ class JobboardController extends Controller
     {
       $userid = Auth::user()->id;
 
-      $candidates = Candidate::where('user_id',$userid)->get();
+      $candidates = Candidate::where('user_id',$userid)->orderBy('id', 'DESC')->get();
 
       return view('vendor.abhitheawesomecoder.jobboardpro.views.resumesposted',["candidates" => $candidates]);
 
@@ -48,6 +64,22 @@ class JobboardController extends Controller
       $jobs = User::find($userid)->jobs()->orderBy('id', 'DESC')->get();
 
       return view('vendor.abhitheawesomecoder.jobboardpro.views.jobsapplied',["jobs" => $jobs]);
+
+    }
+    public function jobapplications($id)
+    {
+      $userid = Auth::user()->id;
+
+      $jobs = User::find($userid);
+
+      $application = \DB::table('candidates')
+            ->join('job_user', 'candidates.user_id', '=', 'job_user.user_id')
+            ->where('job_id',$id)
+            ->where('active',1)
+            ->select('candidates.*', 'candidates.id as can_id')
+            ->get();
+
+      return view('vendor.abhitheawesomecoder.jobboardpro.views.jobapplications',["candidates" => $application]);
 
     }
     public function apply($jobid){
@@ -72,6 +104,124 @@ class JobboardController extends Controller
       return view('vendor.abhitheawesomecoder.jobboardpro.views.postjob');
 
     }
+
+    public function editresume($id){
+
+      $userid = Auth::user()->id;
+
+      $can = Candidate::find($id);
+
+      $name = explode(" ",$can->profile_name);
+
+      $size = count($name);
+
+      if($size == 1)
+      $name[1] = $name[2] = '';
+      elseif($size == 2) {
+        $name[2] = '';
+      }
+
+      return view('vendor.abhitheawesomecoder.jobboardpro.views.editresume',["can" => $can,'name' => $name]);
+
+    }
+    public function editjob($id){
+
+      $userid = Auth::user()->id;
+
+      $job = Job::find($id);
+
+      return view('vendor.abhitheawesomecoder.jobboardpro.views.editjob',["job" => $job]);
+
+    }
+    public function updateresumepost(Request $request){
+      $path = "";
+
+      if (\Request::hasFile('profile_picture'))
+      {
+      $this->validate($request, [
+          'profile_picture' => 'required|max:1024|mimes:jpeg,png'
+      ]);
+
+      $image = \Request::file('profile_picture');
+
+      $filename  = time() . '.' . $image->getClientOriginalExtension();
+
+      $path = public_path('vendor/abhitheawesomecoder/jobboardpro/assets/images/candidates/' . $filename);
+    }
+    $this->validate($request, [
+        'first_name' => 'required',
+        'profile_title' => 'required',
+        'address' => 'required',
+        'description' => 'required',
+        'skills' => 'required'
+    ]);
+
+    $id = $request->input('id');
+
+    $can = Candidate::find($id);
+    //$old_path = public_path('vendor/abhitheawesomecoder/jobboardpro/assets/' . $can->profile_pic);
+    $can->profile_name = trim($request["first_name"]." ".$request->input('middle_name', '')." ".$request->input('last_name', ''));
+    $can->profile_title = $request["profile_title"];
+    $can->address = trim($request["address"]." ".$request->input('city', '')." ".$request->input('country', ''));
+    $can->profile_description = $request["description"];
+    $can->skills = $request["skills"];
+    if($path == "")
+    $can->profile_pic = $can->profile_pic;
+    else{
+      Image::make($image->getRealPath())->resize(72, 72)->save($path);
+      $can->profile_pic = 'images/candidates/'.$filename;
+    }
+    $can->save();
+
+
+      return redirect()->back();
+    }
+    public function updatejobpost(Request $request){
+
+      $path = "";
+
+      if (\Request::hasFile('company_logo'))
+      {
+      $this->validate($request, [
+          'company_logo' => 'required|max:1024|mimes:jpeg,png'
+      ]);
+
+      $image = \Request::file('company_logo');
+
+      $filename  = time() . '.' . $image->getClientOriginalExtension();
+
+      $path = public_path('vendor/abhitheawesomecoder/jobboardpro/assets/images/company-logo/' . $filename);
+    }
+
+    $this->validate($request, [
+        'job_title' => 'required',
+        'job_description' => 'required',
+        'job_location' => 'required',
+        'job_type' => 'required',
+        'job_category' => 'required',
+        'company_name' => 'required'
+    ]);
+
+    $job = Job::find($id);
+    $job->user_id = Auth::user()->id;
+    $job->job_title = $request["job_title"];
+    $job->job_description = $request["job_description"];
+    $job->job_location = $request["job_location"];
+    $job->job_type = $request["job_type"];
+    $job->payment = 200;
+    $job->job_category = $request["job_category"];
+    $job->company_name = $request["company_name"];
+    if($path == "")
+    $job->company_logo = $job->company_logo;
+    else{
+      Image::make($image->getRealPath())->resize(72, 72)->save($path);
+      $job->company_logo = 'images/company-logo/'.$filename;
+    }
+    $job->save();
+
+      return redirect()->back();
+    }
+
     public function saveresumepost(Request $request){
 
       $this->validate($request, [
@@ -90,17 +240,22 @@ class JobboardController extends Controller
       $filename  = time() . '.' . $image->getClientOriginalExtension();
 
       $path = public_path('vendor/abhitheawesomecoder/jobboardpro/assets/images/candidates/' . $filename);
-
+          $user_id = Auth::user()->id;
           Image::make($image->getRealPath())->resize(72, 72)->save($path);
           $can = new Candidate;
-          $can->user_id = Auth::user()->id;
+          $can->user_id = $user_id;
           $can->profile_name = trim($request["first_name"]." ".$request->input('middle_name', '')." ".$request->input('last_name', ''));
           $can->profile_title = $request["profile_title"];
           $can->address = trim($request["address"]." ".$request->input('city', '')." ".$request->input('country', ''));
           $can->profile_description = $request["description"];
           $can->skills = $request["skills"];
           $can->profile_pic = 'images/candidates/'.$filename;
+          $can->active = true;
           $can->save();
+
+          Candidate::where('id','!=',$can->id)
+                    ->where('user_id',$user_id)
+                    ->update(['active' => 0]);
       }
       return view('vendor.abhitheawesomecoder.jobboardpro.views.postresume');
     }

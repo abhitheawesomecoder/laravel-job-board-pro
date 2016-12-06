@@ -1,4 +1,3 @@
-
 @extends('layouts.front')
 
 @section('content')
@@ -53,14 +52,22 @@
                         <div class="address col-3 pl-100">
                             <span class="mtb-30 block">{{ $can->address }}</span>
                         </div>
-                        <div class="keyword col-4 pl-20 pt-39">
+                        <div class="keyword col-2 pl-20 pt-39">
 
                 @foreach (explode(",",  $can->skills) as $skill)
                             <a href="#" class="button mr-10">{{ $skill }}</a>
                 @endforeach
-
-
                         </div>
+
+                        <div class="time-payment col-2 pl-60 text-center pt-22">
+                          @if($can->active)
+                              <span><a href="{{ url('activateresume').'/'.$can->id }}" class="button button-green" style="background-color:green">.Active.</a></span>
+                          @else
+                            <span><a href="{{ url('activateresume').'/'.$can->id }}" class="button button-green" style="background-color:orange">Activate</a></span>
+                          @endif
+                            <a href="{{ url('edit-resume').'/'.$can->id }}" class="button button-red" style="background-color:#5bc0de">Edit</a>
+                        </div>
+
                     </div>
                 @endforeach
 

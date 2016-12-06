@@ -25,6 +25,7 @@ Route::post('/candidate-search', 'abhitheawesomecoder\jobboardpro\controllers\Jo
 Route::group(['middleware' => ['web','auth']], function () {
 
   Route::get('/activate/{jobid}', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@activate');
+  Route::get('/activateresume/{resumeid}', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@activateresume');
 
   Route::get('/jobs-posted', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@jobsposted');
   Route::get('/resumes-posted', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@resumesposted');
@@ -36,7 +37,13 @@ Route::group(['middleware' => ['web','auth']], function () {
   Route::post('/post-resume', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@saveresumepost');
   Route::post('/post-job', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@savejobpost');
 
+Route::get('/edit-resume/{id}', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@editresume');
+Route::get('/edit-job/{id}', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@editjob');
+
+Route::post('/edit-resume', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@updateresumepost');
+Route::post('/edit-job', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@updatejobpost');
 //Route::get('/admin', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@home');
+Route::get('/job-applications/{id}', 'abhitheawesomecoder\jobboardpro\controllers\JobboardController@jobapplications');
 
 
 });

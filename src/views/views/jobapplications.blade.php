@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumb-text">
-                    <h2 class="text-center text-white uppercase mb-17">Job Board</h2>
+                    <h2 class="text-center text-white uppercase mb-17">Resume Posted</h2>
                     <div class="breadcrumb-bar">
                         <ul class="breadcrumb text-center m-0">
                             <li class="text-white uppercase ml-15 mr-15"><a href="index.html">Home</a></li>
-                            <li class="text-white uppercase ml-15 mr-15">Job Board</li>
+                            <li class="text-white uppercase ml-15 mr-15">Candidates</li>
                         </ul>
                     </div>
                 </div>
@@ -21,13 +21,13 @@
     </div>
 </div>
 <!--End of Breadcrumb Banner Area-->
-<!--Start of Job Post Area-->
-<div class="job-post-area ptb-120">
+<!--Start of Candidates Area-->
+<div class="candidates-area ptb-120">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center ">
-                    <h2 class="uppercase">Jobs Posted</h2>
+                    <h2 class="uppercase">Candidates</h2>
                     <div class="separator mt-35 mb-77">
                         <span><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/images/icons/1.png') }}" alt=""></span>
                     </div>
@@ -36,36 +36,43 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="job-post-container fix">
+                <div class="job-post-container fix mb-70">
 
-                  @foreach ($jobs as $job)
+                @foreach ($candidates as $can)
                     <div class="single-job-post fix">
-                        <div class="job-title col-4 pl-30">
+                        <div class="job-title col-3 pl-30">
                             <span class="pull-left block mtb-17">
-                                <a href="#"><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/'. $job->company_logo) }}" alt=""></a>
+                                <a href="{{ url('candidate-details').'/'.$can->id }}"><img src="{{ url('vendor/abhitheawesomecoder/jobboardpro/assets/'. $can->profile_pic) }}" alt=""></a>
                             </span>
                             <div class="fix pl-30 mt-29">
-                                <h4 class="mb-5">{{ $job->job_title }}</h4>
-                                <h5><a href="#">{{ $job->company_name }}</a></h5>
+                                <h4 class="mb-5">{{ $can->profile_name }}</h4>
+                                <h5><a href="#">{{ $can->profile_title }}</a></h5>
                             </div>
                         </div>
-                        <div class="address col-4 pl-50">
-                            <span class="mtb-30 block">{{ $job->job_location }}</span>
+                        <div class="address col-3 pl-100">
+                            <span class="mtb-30 block">{{ $can->address }}</span>
                         </div>
+                        <div class="keyword col-2 pl-20 pt-39">
+
+                @foreach (explode(",",  $can->skills) as $skill)
+                            <a href="#" class="button mr-10">{{ $skill }}</a>
+                @endforeach
+                        </div>
+
                         <div class="time-payment col-2 pl-60 text-center pt-22">
-                            <a href="{{ url('activate').'/'.$job->id }}" class="button button-blue">{{ $job->active ? 'Deactivate' : 'Activate' }}</a>
-                            <a href="{{ url('job-details').'/'.$job->id }}" class="button button-red">Full Time</a>
-                            <a href="{{ url('job-applications').'/'.$job->id }}" class="button button-red" style="background-color:#5bc0de">Applications</a>
+
+                            <a href="{{ url('candidate-details').'/'.$can->can_id }}" class="button button-red" style="background-color:#5bc0de">Details</a>
                         </div>
+
                     </div>
-                    @endforeach
+                @endforeach
 
 
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-<!-- End of Job Post Area -->
-
+<!-- End of Candidates Area -->
 @endsection

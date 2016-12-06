@@ -38,6 +38,7 @@
 
                                         <div class="ml-160 mt-38">
                                             <a href="{{ url('apply').'/'.$job->id }}" class="button button-large-box">Apply</a>
+                                            <a target="_blank" href="{{ url('resumes-posted') }}" class="button button-large-box">Review Resume</a>
                                         </div>
 
                                     </div>
