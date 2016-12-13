@@ -77,19 +77,22 @@
                                             <li><a href="{{ url('/contact')}}">Contact</a></li>
                                             @if (Auth::guest())
                                             @else
-                                            <li><a href="#">Employer</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ url('/post-job') }}">Post job</a></li>
-                                                    <li><a href="{{ url('/jobs-posted') }}">Jobs posted</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Candidate</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ url('/post-resume') }}">Post resume</a></li>
-                                                    <li><a href="{{ url('/resumes-posted') }}">Resumes posted</a></li>
-                                                    <li><a href="{{ url('/jobs-applied') }}">Jobs Applied</a></li>
-                                                </ul>
-                                            </li>
+                                                @if(Auth::user()->user_type == 'Employer')
+                                                    <li><a href="#">Employer</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="{{ url('/post-job') }}">Post job</a></li>
+                                                            <li><a href="{{ url('/jobs-posted') }}">Jobs posted</a></li>
+                                                        </ul>
+                                                    </li>
+                                                @else
+                                                    <li><a href="#">Candidate</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="{{ url('/post-resume') }}">Post resume</a></li>
+                                                            <li><a href="{{ url('/resumes-posted') }}">Resumes posted</a></li>
+                                                            <li><a href="{{ url('/jobs-applied') }}">Jobs Applied</a></li>
+                                                        </ul>
+                                                    </li>
+                                                @endif
                                             @endif
                                         </ul>
                                     </nav>
@@ -132,12 +135,14 @@
 												<li><a href="{{ url('/contact')}}">Contact</a></li>
                         @if (Auth::guest())
                         @else
+                        @if(Auth::user()->user_type == 'Employer')
                         <li><a href="#">Employer</a>
                             <ul class="sub-menu">
                                 <li><a href="{{ url('/post-job') }}">Post job</a></li>
                                 <li><a href="{{ url('/jobs-posted') }}">Jobs posted</a></li>
                             </ul>
                         </li>
+                        @else
                         <li><a href="#">Candidate</a>
                             <ul class="sub-menu">
                                 <li><a href="{{ url('/post-resume') }}">Post resume</a></li>
@@ -146,6 +151,8 @@
                             </ul>
                         </li>
                         @endif
+                        @endif
+
 
 
 											  <!-- Authentication Links -->
