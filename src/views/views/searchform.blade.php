@@ -1,5 +1,5 @@
 <form action="{{ url('job-search') }}" method="post">
-
+{{ csrf_field() }}
     <div class="form-container fix bg-opacity-blue-85 mt-125">
         <div class="box-select">
             <div class="select large">
