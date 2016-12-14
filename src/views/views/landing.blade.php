@@ -19,7 +19,7 @@
                                             <span class="tlt block color-blue" data-in-effect="rollIn" data-out-effect="fadeOutRight" >LOOKING FOR A JOB?</span>
                                         </h1>
                                         <div class="banner-readmore wow bounceInUp mt-35" data-wow-duration="2500ms" data-wow-delay=".1s">
-                                            <a class="button slider-btn" href="#">Find a job</a>
+                                            <a class="button slider-btn" href="{{ url('job-board') }}">Find a job</a>
                                         </div>
                                     </div>
                                 </div>
